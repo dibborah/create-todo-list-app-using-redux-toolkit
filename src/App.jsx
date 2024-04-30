@@ -1,18 +1,8 @@
-import { useSelector } from "react-redux";
-import TodoForm from "./TodoForm";
-import Todos from "./Todos";
+import React from "react";
+import TodoApp from "./features/todos/TodoApp";
 
 const App = () => {
-  const todos = useSelector((state)=>{
-    return state.todos;
-  });
-  console.log(todos);
-  return (
-    <div>
-      <TodoForm />
-      <Todos todos={todos}/>
-    </div>
-  );
+  return <TodoApp />;
 };
 
 export default App;
