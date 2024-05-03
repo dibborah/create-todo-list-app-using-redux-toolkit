@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState = [
   {
@@ -17,10 +17,26 @@ const todosSlice = createSlice({
   name: "todos",
   initialState: initialState,
   reducers: {
-    addTodo: (state, action) => {
-      // const { payload } = newTodo;
-      // return [...state, payload];
-      state.push(action.payload);
+    // addTodo: (state, action) => {
+    //   // const { payload } = newTodo;
+    //   // return [...state, payload];
+    //   state.push(action.payload);
+    // },
+    addTodo: {
+      reducer: (state, action) => {
+        // console.log("reducer run", action)
+        state.push(action.payload);
+      },
+      prepare: (title) => {
+        // console.log("Prepare run");
+        return {
+          payload: {
+            id: nanoid(),
+            title: title,
+            completed: false,
+          },
+        };
+      },
     },
     removeTodo: (state, action) => {
       return state.filter((todo) => todo.id !== action.payload.id);
@@ -32,11 +48,11 @@ const todosSlice = createSlice({
       //   }
       //   return todo;
       // });
-      state.forEach((todo)=> {
-        if(todo.id === action.payload.id){
-          todo.completed = !todo.completed;// redux keeps current states preserve and implicitly returns unchanged state using IMMERSE JS      
+      state.forEach((todo) => {
+        if (todo.id === action.payload.id) {
+          todo.completed = !todo.completed; // redux keeps current states preserve and implicitly returns unchanged state using IMMERSE JS
         }
-      })
+      });
     },
   },
 });

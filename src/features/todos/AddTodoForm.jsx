@@ -7,15 +7,15 @@ const AddTodoForm = () => {
   const [title, setTitle] = useState("");
   const dispatch = useDispatch();
   
-  const newTodo = {
-    id: nanoid(),
-    title: title,
-    completed: false,
-  };
+  // const newTodo = {
+  //   id: nanoid(),
+  //   title: title,
+  //   completed: false,
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addTodo(newTodo));
+    dispatch(addTodo(title));
     setTitle("");
   };
 
